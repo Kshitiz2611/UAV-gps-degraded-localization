@@ -1,0 +1,91 @@
+/**:
+  ros__parameters:
+
+    # Topics
+    pointCloudTopic: "/lidar/points_timed"
+    imuTopic: "/imu/data"
+    odomTopic: "odometry/imu"
+    gpsTopic: "odometry/gpsz"
+
+    # Frames
+    lidarFrame: "lidar_sensor_link"
+    baselinkFrame: "base_link"
+    odometryFrame: "odom"
+    mapFrame: "map"
+
+    # GPS Settings
+    useImuHeadingInitialization: false
+    useGpsElevation: false
+    gpsCovThreshold: 2.0
+    poseCovThreshold: 25.0
+
+    # Export settings
+    savePCD: false
+    savePCDDirectory: "/Downloads/LOAM/"
+
+    # Sensor Settings — VLP-16 style 16 beam
+    sensor: velodyne
+    N_SCAN: 16
+    Horizon_SCAN: 1800
+    downsampleRate: 1
+    lidarMinRange: 0.3
+    lidarMaxRange: 100.0
+
+    # IMU Settings — from your SDF noise values
+    imuAccNoise: 0.00637
+    imuGyrNoise: 0.0008726
+    imuAccBiasN: 0.001
+    imuGyrBiasN: 0.0001
+    imuGravity: 9.80665
+    imuRPYWeight: 0.01
+
+    # Extrinsics: LiDAR to IMU (IMU at base_link, LiDAR 15cm above)
+    extrinsicTrans: [0.0, 0.0, 0.15]
+    extrinsicRot:   [1.0, 0.0, 0.0,
+                     0.0, 1.0, 0.0,
+                     0.0, 0.0, 1.0]
+    extrinsicRPY:   [1.0, 0.0, 0.0,
+                     0.0, 1.0, 0.0,
+                     0.0, 0.0, 1.0]
+
+    # LOAM feature thresholds
+    edgeThreshold: 1.0
+    surfThreshold: 0.1
+    edgeFeatureMinValidNum: 10
+    surfFeatureMinValidNum: 100
+
+    # Voxel filter — indoor settings
+    odometrySurfLeafSize: 0.2
+    mappingCornerLeafSize: 0.1
+    mappingCornerLeafSize: 0.1
+    mappingSurfLeafSize: 0.2
+
+    # Robot motion constraint
+    z_tollerance: 1000.0
+    rotation_tollerance: 1000.0
+
+    # CPU params
+    numberOfCores: 4
+    mappingProcessInterval: 0.15
+
+    # Surrounding map
+    surroundingkeyframeAddingDistThreshold: 1.0
+    surroundingkeyframeAddingAngleThreshold: 0.2
+    surroundingKeyframeDensity: 2.0
+    surroundingKeyframeSearchRadius: 50.0
+
+    # Loop closure
+    loopClosureEnableFlag: true
+    loopClosureFrequency: 1.0
+    surroundingKeyframeSize: 50
+    historyKeyframeSearchRadius: 15.0
+    historyKeyframeSearchTimeDiff: 30.0
+    historyKeyframeSearchNum: 25
+    historyKeyframeFitnessScore: 0.3
+
+    # Visualisation
+    globalMapVisualizationSearchRadius: 1000.0
+    globalMapVisualizationPoseDensity: 10.0
+    globalMapVisualizationLeafSize: 1.0
+
+    use_sim_time: true

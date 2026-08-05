@@ -1,0 +1,73 @@
+%YAML:1.0
+
+# Gazebo x500 stereo + IMU config
+imu: 1
+num_of_cam: 2
+
+imu_topic: "/imu/data"
+image0_topic: "/camera_left_synced"
+image1_topic: "/camera_right_synced"
+output_path: "/home/kshitiz/vins_output/"
+
+cam0_calib: "left.yaml"
+cam1_calib: "right.yaml"
+image_width: 640
+image_height: 480
+
+# GPU acceleration — disable for stability
+use_gpu: 0
+use_gpu_acc_flow: 0
+use_gpu_ceres: 0
+
+# Extrinsic: body (IMU at base_link) to camera
+# Left camera at (0.1, 0.06, 0.0) from base_link
+# body_T_cam = inverse: camera is 0.1m forward, 0.06m left
+estimate_extrinsic: 1   # optimize around initial guess
+body_T_cam0: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [1., 0., 0., -0.1,
+          0., 1., 0., -0.06,
+          0., 0., 1.,  0.0,
+          0., 0., 0.,  1.0]
+
+# Right camera at (0.1, -0.06, 0.0) from base_link
+body_T_cam1: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [1., 0., 0., -0.1,
+          0., 1., 0.,  0.06,
+          0., 0., 1.,  0.0,
+          0., 0., 0.,  1.0]
+
+# Feature tracker
+multiple_thread: 1
+max_cnt: 150
+min_dist: 30
+freq: 5
+F_threshold: 1.0
+show_track: 1
+flow_back: 1
+
+# Optimisation
+max_solver_time: 0.04
+max_num_iterations: 8
+keyframe_parallax: 10.0
+
+# IMU noise — from Gazebo SDF sensor noise values
+acc_n: 0.00637
+gyr_n: 0.0008726
+acc_w: 0.001
+gyr_w: 0.0001
+g_norm: 9.80665
+
+# Time offset estimation
+estimate_td: 0
+td: 0.0
+
+# Loop closure — disabled, LIO-SAM handles this
+load_previous_pose_graph: 0
+pose_graph_save_path: "/home/kshitiz/vins_output/pose_graph/"
+save_image: 0
