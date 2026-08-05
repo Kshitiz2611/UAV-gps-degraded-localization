@@ -84,17 +84,25 @@ class FusionNode(Node):
 
     def cb_lio_feat(self, msg):
         self.lio_feats = msg.width * msg.height
-        if self.lio_feats > 200:   self.P_lio = 0.05
-        elif self.lio_feats > 100: self.P_lio = 0.2
-        elif self.lio_feats > 50:  self.P_lio = 1.0
-        else:                      self.P_lio = 10.0
+        if self.lio_feats > 200:   
+            self.P_lio = 0.05
+        elif self.lio_feats > 100: 
+            self.P_lio = 0.2
+        elif self.lio_feats > 50:  
+            self.P_lio = 1.0
+        else:                      
+            self.P_lio = 10.0
 
     def cb_vio_pts(self, msg):
         self.vio_pts = msg.width * msg.height
-        if self.vio_pts > 80:   self.P_vio = 0.1
-        elif self.vio_pts > 40: self.P_vio = 0.5
-        elif self.vio_pts > 20: self.P_vio = 5.0
-        else:                   self.P_vio = 50.0
+        if self.vio_pts > 80:   
+            self.P_vio = 0.1
+        elif self.vio_pts > 40: 
+            self.P_vio = 0.5
+        elif self.vio_pts > 20: 
+            self.P_vio = 5.0
+        else:                   
+            self.P_vio = 50.0
 
     def fuse(self):
         if self.gps_pos is None:
@@ -133,9 +141,9 @@ class FusionNode(Node):
             fused = fused + w * accepted[s]
 
         # only count source as active if contributing more than 0.1%
-        l = 'lio' in accepted and weights.get('lio', 0) / w_total > 0.001
-        v = 'vio' in accepted and weights.get('vio', 0) / w_total > 0.001
-        g = 'gps' in accepted and weights.get('gps', 0) / w_total > 0.001
+        l = 'lio' in accepted
+        v = 'vio' in accepted 
+        g = 'gps' in accepted 
 
         if l and v and g:
             state = "FULL"
