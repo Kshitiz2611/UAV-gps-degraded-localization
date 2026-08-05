@@ -34,7 +34,7 @@ Validated in **Gazebo Harmonic simulation** with PX4 SITL, achieving automatic s
 
 The system is validated in a custom **walls world** (`walls.sdf`) — an enclosed brick-textured room providing:
 - Clean planar features for LIO-SAM LOAM feature extraction
-- Not reliable for ivisual corners for VINS-Fusion KLT tracking | In progress to add new distinct features like warehouse
+- Not reliable for visual corners for VINS-Fusion KLT tracking | In progress to add new distinct features like warehouse
 - GPS-denied-like indoor geometry for testing degradation states
 
 ---
