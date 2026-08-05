@@ -55,7 +55,7 @@ The system is validated in a custom **walls world** (`walls.sdf`) — an enclose
 
 1. **Clone the repository:**
 ```bash
-git clone https://github.com/YOUR_USERNAME/uav-gps-degraded-localization.git
+git clone https://github.com/Kshitiz2611/uav-gps-degraded-localization.git
 cd uav-gps-degraded-localization
 ```
 
